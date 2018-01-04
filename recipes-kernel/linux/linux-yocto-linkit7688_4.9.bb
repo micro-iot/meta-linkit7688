@@ -54,7 +54,7 @@ require recipes-kernel/linux/linux-yocto.inc
 
 # Override SRC_URI in a copy of this recipe to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;name=machine;tag=v4.9.73"
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;name=machine"
 SRC_URI += "file://linkit7688.scc \
             file://linkit7688.cfg \
             file://linkit7688-standard.scc \
@@ -69,12 +69,12 @@ LINUX_VERSION_EXTENSION_append = "-custom"
 # Modify SRCREV to a different commit hash in a copy of this recipe to
 # build a different release of the Linux kernel.
 # tag: v4.2 64291f7db5bd8150a74ad2036f1037e6a0428df2
-# SRCREV_machine="6926d381397c681f7701efaea45ca27465bc67d3"
+SRCREV_machine="b3e88217e2f95b004da89a0ff931e1dc45d3d094"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 # Override COMPATIBLE_MACHINE to include your machine in a copy of this recipe
 # file. Leaving it empty here ensures an early explicit build failure.
-COMPATIBLE_MACHINE = "linkit7688"
+COMPATIBLE_MACHINE_linkit7688 = "linkit7688"
 
 PREFERRED_PROVIDER_virtual/kernel="linux-yocto-linkit7688"

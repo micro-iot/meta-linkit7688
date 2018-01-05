@@ -2,7 +2,7 @@ define KMACHINE linkit7688
 
 define KARCH mips
 
-include ktypes/standard/standard.scc nopatch
+# include ktypes/standard/standard.scc nopatch
 define KTYPE standard/base
 branch linkit7688
 

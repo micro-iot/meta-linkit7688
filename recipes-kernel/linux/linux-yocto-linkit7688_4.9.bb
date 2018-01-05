@@ -86,4 +86,4 @@ PREFERRED_PROVIDER_virtual/kernel="linux-yocto-linkit7688"
 
 KERNEL_VERSION_SANITY_SKIP="1"
 
-KERNEL_DEFCONFIG_linkit7688="defconfig"
+# KERNEL_DEFCONFIG_linkit7688="defconfig"

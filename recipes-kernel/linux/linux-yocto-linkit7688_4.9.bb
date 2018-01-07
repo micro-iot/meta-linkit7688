@@ -67,6 +67,9 @@ SRC_URI += "file://linkit7688.scc \
             file://linkit7688-user-patches.scc \
             file://defconfig \
            "
+SRC_URI += "file://openwrt_files/target/linux/generic/files"
+SRC_URI += "file://openwrt_files/target/linux/ramips/files-4.9"
+
 LINUX_VERSION ?= "4.9"
 LINUX_VERSION_EXTENSION_append = "-custom"
 
@@ -87,3 +90,14 @@ PREFERRED_PROVIDER_virtual/kernel="linux-yocto-linkit7688"
 KERNEL_VERSION_SANITY_SKIP="1"
 
 # KERNEL_DEFCONFIG_linkit7688="defconfig"
+
+FILESEXTRAPATHS_prepend:="${THISDIR}/openwrt_files:"
+
+do_patch_prepend() {
+    cp -r openwrt_files/target/linux/generic/files/* ${S}
+    cp -r openwrt_files/target/linux/ramips/files-4.9/* ${S}
+}
+
+do_configure_prepend() {
+    rm -rf {B}/.config
+}

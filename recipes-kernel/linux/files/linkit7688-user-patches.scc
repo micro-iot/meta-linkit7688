@@ -253,3 +253,4 @@ patch 0901-spansion_nand_id_fix.patch
 patch 100-mt7621-core-detect-hack.patch
 patch 101-mt7621-timer.patch
 patch 999-fix-pci-init-mt7620.patch
+patch 0001-linkit7688-dts-makefile.patch

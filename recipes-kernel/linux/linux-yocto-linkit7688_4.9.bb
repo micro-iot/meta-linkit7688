@@ -69,6 +69,7 @@ SRC_URI += "file://linkit7688.scc \
            "
 SRC_URI += "file://openwrt_files/target/linux/generic/files"
 SRC_URI += "file://openwrt_files/target/linux/ramips/files-4.9"
+SRC_URI += "file://openwrt_files/target/linux/ramips/dts"
 
 LINUX_VERSION ?= "4.9"
 LINUX_VERSION_EXTENSION_append = "-custom"
@@ -96,8 +97,17 @@ FILESEXTRAPATHS_prepend:="${THISDIR}/openwrt_files:"
 do_patch_prepend() {
     cp -r openwrt_files/target/linux/generic/files/* ${S}
     cp -r openwrt_files/target/linux/ramips/files-4.9/* ${S}
+    cp -r openwrt_files/target/linux/ramips/dts/* ${S}/arch/mips/boot/dts/ralink
 }
 
 do_configure_prepend() {
     rm -rf {B}/.config
+}
+
+#KERNEL_DEVICETREE = "${S}/arch/mips/boot/dts/ralink/LINKIT7688.dts"
+#KERNEL_DEVICETREE += "LINKIT7688.dtb"
+
+do_compile_append () {
+    cd ${B}
+    make dtbs
 }

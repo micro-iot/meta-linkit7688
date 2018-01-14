@@ -94,6 +94,8 @@ KERNEL_VERSION_SANITY_SKIP="1"
 
 FILESEXTRAPATHS_prepend:="${THISDIR}/openwrt_files:"
 
+DEPENDS+="image-patch-native"
+
 do_patch_prepend() {
     cp -r openwrt_files/target/linux/generic/files/* ${S}
     cp -r openwrt_files/target/linux/ramips/files-4.9/* ${S}
@@ -110,4 +112,6 @@ do_configure_prepend() {
 do_compile_append () {
     cd ${B}
     make dtbs
+    cp arch/mips/boot/dts/ralink/LINKIT7688.dtb ${B}
+    patch-dtb vmlinux LINKIT7688.dtb
 }

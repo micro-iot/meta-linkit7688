@@ -94,7 +94,7 @@ KERNEL_VERSION_SANITY_SKIP="1"
 
 FILESEXTRAPATHS_prepend:="${THISDIR}/openwrt_files:"
 
-DEPENDS+="image-patch-native"
+DEPENDS+="image-patch-native xz-native u-boot-mkimage-native"
 
 do_patch_prepend() {
     cp -r openwrt_files/target/linux/generic/files/* ${S}
@@ -110,8 +110,19 @@ do_configure_prepend() {
 #KERNEL_DEVICETREE += "LINKIT7688.dtb"
 
 do_compile_append () {
+
     cd ${B}
     make dtbs
+
     cp arch/mips/boot/dts/ralink/LINKIT7688.dtb ${B}
     patch-dtb vmlinux LINKIT7688.dtb
+
+    # lzma e vmlinux -lc1 -lp2 -pb2 vmlinux.bin.lzma
+    cp vmlinux vmlinux_
+    # lzma -z --lzma1=lc=1,lp=2,pb=2 vmlinux
+    lzma -z vmlinux
+    mv vmlinux.lzma vmlinux.bin.lzma
+    mv vmlinux_ vmlinux
+    
+    mkimage -A mips -O linux -T kernel -C lzma -a 0x80000000 -e 0x80000000 -n LINUX -d vmlinux.bin.lzma uImage
 }

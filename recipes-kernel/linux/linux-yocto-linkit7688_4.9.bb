@@ -116,13 +116,16 @@ do_compile_append () {
 
     cp arch/mips/boot/dts/ralink/LINKIT7688.dtb ${B}
     patch-dtb vmlinux LINKIT7688.dtb
+}
 
+do_install_prepend() {
+    cd ${B}
     openwrt-lzma e vmlinux -lc1 -lp2 -pb2 vmlinux.bin.lzma
-    ## cp vmlinux vmlinux_
+    # cp vmlinux vmlinux_
     # lzma -z --lzma1=lc=1,lp=2,pb=2 vmlinux
     # lzma -z vmlinux
-    ## mv vmlinux.lzma vmlinux.bin.lzma
-    ## mv vmlinux_ vmlinux
+    # mv vmlinux.lzma vmlinux.bin.lzma
+    # mv vmlinux_ vmlinux
     
     mkimage -A mips -O linux -T kernel -C lzma -a 0x80000000 -e 0x80000000 -n LINUX -d vmlinux.bin.lzma uImage
 }

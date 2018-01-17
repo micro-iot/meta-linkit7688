@@ -110,16 +110,14 @@ do_configure_prepend() {
 #KERNEL_DEVICETREE += "LINKIT7688.dtb"
 
 do_compile_append () {
-
     cd ${B}
     make dtbs
-
-    cp arch/mips/boot/dts/ralink/LINKIT7688.dtb ${B}
-    patch-dtb vmlinux LINKIT7688.dtb
 }
 
 do_install_prepend() {
     cd ${B}
+    cp arch/mips/boot/dts/ralink/LINKIT7688.dtb ${B}
+    patch-dtb vmlinux LINKIT7688.dtb
     openwrt-lzma e vmlinux -lc1 -lp2 -pb2 vmlinux.bin.lzma
     # cp vmlinux vmlinux_
     # lzma -z --lzma1=lc=1,lp=2,pb=2 vmlinux

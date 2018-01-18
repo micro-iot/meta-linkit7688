@@ -116,9 +116,10 @@ do_compile_append () {
 
 do_install_prepend() {
     cd ${B}
+    ${OBJCOPY} -O binary -R .reginfo -R .notes -R .note -R .comment -R .mdebug -R .note.gnu.build-id -S vmlinux vmlinux.bin
     cp arch/mips/boot/dts/ralink/LINKIT7688.dtb ${B}
-    patch-dtb vmlinux LINKIT7688.dtb
-    openwrt-lzma e vmlinux -lc1 -lp2 -pb2 vmlinux.bin.lzma
+    patch-dtb vmlinux.bin LINKIT7688.dtb
+    openwrt-lzma e vmlinux.bin -lc1 -lp2 -pb2 vmlinux.bin.lzma
     # cp vmlinux vmlinux_
     # lzma -z --lzma1=lc=1,lp=2,pb=2 vmlinux
     # lzma -z vmlinux

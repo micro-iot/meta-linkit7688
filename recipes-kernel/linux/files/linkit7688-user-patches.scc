@@ -207,7 +207,7 @@ patch 930-crashlog.patch
 patch 0004-MIPS-ralink-add-MT7621-pcie-driver.patch
 patch 0005-MIPS-use-set_mode-to-enable-disable-the-cevt-r4k-irq.patch
 patch 0006-MIPS-ralink-add-cpu-frequency-scaling.patch
-patch 0007-MIPS-ralink-copy-the-commandline-from-the-devicetree.patch
+# patch 0007-MIPS-ralink-copy-the-commandline-from-the-devicetree.patch
 patch 0009-PCI-MIPS-enable-PCIe-on-MT7688.patch
 patch 0013-owrt-hack-fix-mt7688-cache-issue.patch
 patch 0015-arch-mips-do-not-select-illegal-access-driver-by-def.patch
@@ -243,7 +243,9 @@ patch 0070-weak_reordering.patch
 patch 0090-ethernet.patch
 patch 0098-disable_cm.patch
 patch 0099-pci-mt7620.patch
-patch 0100-prom_fixes.patch
+# This patch had to be bugfixed (bootargs not working).
+# patch 0100-prom_fixes.patch
+patch 0100-prom_fixes-bootargs-bugfix.patch
 patch 0101-MIPS-ralink-allow-NULL-clock-for-clk_get_rate.patch
 patch 0105-set_mt7621_soc_type.patch
 patch 0200-linkit_bootstrap.patch

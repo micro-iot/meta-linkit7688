@@ -59,13 +59,13 @@ KBRANCH="v4.9.73"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nobranch=1;rev=b3e88217e2f95b004da89a0ff931e1dc45d3d094"
 # SRC_URI="git://192.168.0.9/linux-stable-bare.git;protocol=git;nobranch=1;rev=b3e88217e2f95b004da89a0ff931e1dc45d3d094"
 
-SRC_URI += "file://linkit7688.scc \
+SRC_URI += "file://defconfig \
+            file://linkit7688.scc \
             file://linkit7688.cfg \
             file://linkit7688-standard.scc \
             file://linkit7688-user-config.cfg \
             file://linkit7688-user-features.scc \
             file://linkit7688-user-patches.scc \
-            file://defconfig \
            "
 SRC_URI += "file://openwrt_files/target/linux/generic/files"
 SRC_URI += "file://openwrt_files/target/linux/ramips/files-4.9"
@@ -127,4 +127,8 @@ do_install_prepend() {
     # mv vmlinux_ vmlinux
     
     mkimage -A mips -O linux -T kernel -C lzma -a 0x80000000 -e 0x80000000 -n LINUX -d vmlinux.bin.lzma uImage
+}
+
+kernel_do_deploy_append() {
+    install -m 0644 ${B}/uImage ${DEPLOYDIR}/uImage
 }

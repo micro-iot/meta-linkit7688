@@ -132,3 +132,8 @@ do_install_prepend() {
 kernel_do_deploy_append() {
     install -m 0644 ${B}/uImage ${DEPLOYDIR}/uImage
 }
+
+# Disabling stripping.
+# Allows kernel modules recompile. Vmlinux cannot be stripped for that.
+do_strip() {
+}

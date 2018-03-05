@@ -54,6 +54,8 @@ require recipes-kernel/linux/linux-yocto.inc
 
 KBRANCH="v4.9.73"
 
+# Original openwrt commit (forked from): c5ca1c9ab65bfe1e6fc74230f8c0121230562b1c
+
 # Override SRC_URI in a copy of this recipe to point at a different source
 # tree if you do not want to build from Linus' tree.
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nobranch=1;rev=b3e88217e2f95b004da89a0ff931e1dc45d3d094"

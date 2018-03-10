@@ -247,3 +247,16 @@ EXTRA_OEMAKE="-C "${S}" \
 	KLIB=${STAGING_KERNEL_BUILDDIR} \
 	KERNEL_SUBLEVEL=73 \
 	KBUILD_LDFLAGS_MODULE_PREREQ="
+
+do_install_append() {
+	mkdir -p \
+		${STAGING_KERNEL_DIR}/usr/include/mac80211 \
+		${STAGING_KERNEL_DIR}/usr/include/mac80211-backport \
+		${STAGING_KERNEL_DIR}/usr/include/mac80211/ath \
+		${STAGING_KERNEL_DIR}/usr/include/net/mac80211
+	cp -r ${S}/net/mac80211/*.h ${S}/include/* ${STAGING_KERNEL_DIR}/usr/include/mac80211/
+	cp -r ${S}/backport-include/* ${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/
+	cp -r ${S}/net/mac80211/rate.h ${STAGING_KERNEL_DIR}/usr/include/net/mac80211/
+	cp -r ${S}/drivers/net/wireless/ath/*.h ${STAGING_KERNEL_DIR}/usr/include/mac80211/ath/
+	rm -f ${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/linux/module.h
+}

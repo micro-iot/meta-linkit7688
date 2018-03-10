@@ -195,6 +195,7 @@ file://936-ath10k-fix-otp-failure-result.patch \
 file://940-mwl8k_init_devices_synchronously.patch \
 file://960-0010-ath10k-limit-htt-rx-ring-size.patch \
 file://960-0011-ath10k-limit-pci-buffer-size.patch \
+file://961-disable-kconf-target-build.patch \
 "
 S = "${WORKDIR}/backports-2017-11-01"
 
@@ -239,15 +240,10 @@ do_configure() {
 
 LDFLAGS = ""
 
-MAKE_OPTS="-C "${S}" \
+EXTRA_OEMAKE="-C "${S}" \
 	EXTRA_CFLAGS="-I${S}/include" \
 	KLIB_BUILD="${STAGING_KERNEL_BUILDDIR}" \
 	MODPROBE=true \
 	KLIB=${STAGING_KERNEL_BUILDDIR} \
 	KERNEL_SUBLEVEL=73 \
 	KBUILD_LDFLAGS_MODULE_PREREQ="
-
-do_compile() {
-	     cd ${S}
-	     make ${MAKE_OPTS}
-}

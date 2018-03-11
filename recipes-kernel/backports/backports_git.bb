@@ -196,6 +196,7 @@ file://940-mwl8k_init_devices_synchronously.patch \
 file://960-0010-ath10k-limit-htt-rx-ring-size.patch \
 file://960-0011-ath10k-limit-pci-buffer-size.patch \
 file://961-disable-kconf-target-build.patch \
+file://962-fix-missing-seq-command.patch \
 "
 S = "${WORKDIR}/backports-2017-11-01"
 

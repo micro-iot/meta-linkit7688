@@ -12,6 +12,9 @@ PV = "1.0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
+DEPENDS = "kernel-module-backports"
+RDEPENDS_${PN} = "kernel-module-backports"
+
 KERNEL_MODULE_AUTOLOAD += "mt76"
 
 EXTRA_OEMAKE += "NOSTDINC_FLAGS="-I${S} -I${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/uapi -I${STAGING_KERNEL_DIR}/usr/include/mac80211-backport -I${STAGING_KERNEL_DIR}/usr/include/mac80211/uapi -I${STAGING_KERNEL_DIR}/usr/include/mac80211 -include ${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/backport/autoconf.h -include ${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/backport/backport.h""

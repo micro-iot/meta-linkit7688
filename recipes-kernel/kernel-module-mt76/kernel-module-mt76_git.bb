@@ -15,6 +15,24 @@ S = "${WORKDIR}/git"
 DEPENDS = "kernel-module-backports"
 RDEPENDS_${PN} = "kernel-module-backports"
 
-KERNEL_MODULE_AUTOLOAD += "mt76"
+FILES_${PN}${KERNEL_MODULE_PACKAGE_SUFFIX} += "/lib/firmware/*"
+
+KERNEL_MODULE_AUTOLOAD += "kernel-module-backports kernel-module-mt76 kernel-module-mt7603e kernel-module-mt76x2e"
 
 EXTRA_OEMAKE += "NOSTDINC_FLAGS="-I${S} -I${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/uapi -I${STAGING_KERNEL_DIR}/usr/include/mac80211-backport -I${STAGING_KERNEL_DIR}/usr/include/mac80211/uapi -I${STAGING_KERNEL_DIR}/usr/include/mac80211 -include ${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/backport/autoconf.h -include ${STAGING_KERNEL_DIR}/usr/include/mac80211-backport/backport/backport.h""
+
+do_install_append() {
+	install -d ${D}/lib/firmware
+	cp \
+		${S}/firmware/mt7662_rom_patch.bin \
+		${S}/firmware/mt7662.bin \
+		${D}/lib/firmware
+
+	cp \
+		${S}/firmware/mt7628_e1.bin \
+		${S}/firmware/mt7628_e2.bin \
+		${S}/firmware/mt7603_e1.bin \
+		${S}/firmware/mt7603_e2.bin \
+		${D}/lib/firmware
+
+}

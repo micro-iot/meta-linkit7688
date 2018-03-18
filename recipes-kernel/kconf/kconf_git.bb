@@ -1,6 +1,9 @@
-SRC_URI = "file://backports-2017-11-01.tar.xz"
+DESCRIPTION = "Openwrt backports tool for handling kconfig data."
+SECTION = "Openwrt tools."
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-LICENSE="CLOSED"
+SRC_URI = "file://backports-2017-11-01.tar.xz"
 
 # Modify these as desired
 #PV = "1.0+git${SRCPV}"

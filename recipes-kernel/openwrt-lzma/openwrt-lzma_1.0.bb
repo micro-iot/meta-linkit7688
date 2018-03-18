@@ -1,7 +1,10 @@
+DESCRIPTION = "Openwrt tool for pathcing an image with DTB file."
+SECTION = "Openwrt tools."
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+
 SRC_URI = "http://downloads.openwrt.org/sources/lzma-4.65.tar.bz2"
 SRC_URI[md5sum]="434e51a018b4c8ef377bf81520a53af0"
-LICENSE="CLOSED"
-
 
 S = "${WORKDIR}/lzma-4.65/"
 

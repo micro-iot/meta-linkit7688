@@ -1,3 +1,8 @@
+DESCRIPTION = "Openwrt backported WLAN drivers."
+SECTION = "Openwrt drivers."
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+
 SRC_URI = "file://backports-2017-11-01.tar.xz \
 file://.config \
 file://000-fix_kconfig.patch \
@@ -200,8 +205,6 @@ file://962-fix-missing-seq-command.patch \
 "
 S = "${WORKDIR}/backports-2017-11-01"
 
-LICENSE = "CLOSED"
-
 DEPENDS = "kconf-native"
 
 inherit module
@@ -210,7 +213,6 @@ PKG_VERSION = "2017-11-01"
 PKG_RELEASE = "1"
 REVISION = "r5671-c5ca1c9"
 
-#LINUX_DIR = "/media/piob/SSD1_2/work/yocto_iot/mt7688/poky/build/tmp/work/linkit7688-poky-linux-musl/linux-yocto-linkit7688/4.9+gitAUTOINC+b3e88217e2-r0/linux-linkit7688-standard-build"
 
 
 do_configure() {

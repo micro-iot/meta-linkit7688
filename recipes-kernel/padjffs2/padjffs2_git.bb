@@ -1,6 +1,9 @@
-SRC_URI = "git://github.com/openwrt/openwrt.git;protocol=git"
+DESCRIPTION = "Openwrt tool for pathcing an image with DTB file."
+SECTION = "Openwrt tools."
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-LICENSE="CLOSED"
+SRC_URI = "git://github.com/openwrt/openwrt.git;protocol=git"
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"

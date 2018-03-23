@@ -59,7 +59,6 @@ KBRANCH="v4.9.73"
 # Override SRC_URI in a copy of this recipe to point at a different source
 # tree if you do not want to build from Linus' tree.
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nobranch=1;rev=b3e88217e2f95b004da89a0ff931e1dc45d3d094"
-# SRC_URI="git://192.168.0.9/linux-stable-bare.git;protocol=git;nobranch=1;rev=b3e88217e2f95b004da89a0ff931e1dc45d3d094"
 
 SRC_URI += "file://defconfig \
             file://linkit7688.scc \

@@ -1,5 +1,4 @@
 SRC_URI = "file://hello.c"
-LICENSE="CLOSED"
 
 # Modify these as desired
 

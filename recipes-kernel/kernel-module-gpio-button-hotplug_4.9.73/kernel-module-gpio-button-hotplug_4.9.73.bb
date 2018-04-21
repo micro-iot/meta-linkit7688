@@ -7,9 +7,6 @@ SRC_URI = "file://Makefile file://gpio-button-hotplug.c"
 
 inherit module
 
-# Modify these as desired
-PV = "2.0"
-
 S = "${WORKDIR}"
 
 FILES_${PN}${KERNEL_MODULE_PACKAGE_SUFFIX} += "/lib/firmware/*"

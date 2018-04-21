@@ -9,10 +9,6 @@ file://Makefile.patch \
 
 inherit module
 
-# Modify these as desired
-PV = "1.0+git${SRCPV}"
-#SRCREV = "${AUTOREV}"
-
 S = "${WORKDIR}/git"
 
 DEPENDS = "kernel-module-backports"

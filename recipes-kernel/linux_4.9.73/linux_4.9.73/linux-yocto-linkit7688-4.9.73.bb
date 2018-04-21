@@ -87,7 +87,7 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
 # file. Leaving it empty here ensures an early explicit build failure.
 COMPATIBLE_MACHINE_linkit7688 = "linkit7688"
 
-PREFERRED_PROVIDER_virtual/kernel="linux-yocto-linkit7688"
+PREFERRED_PROVIDER_virtual/kernel="linux-yocto-linkit7688-4.9.73"
 
 KERNEL_VERSION_SANITY_SKIP="1"
 

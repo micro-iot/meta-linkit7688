@@ -1,0 +1,35 @@
+From 5947170b7380decdbeab6e31c6f763967643a83f Mon Sep 17 00:00:00 2001
+From: me <me@me.me>
+Date: Sun, 18 Feb 2018 01:04:07 +0100
+Subject: [PATCH 01/34] Changed JFFS2 magic number in mtdsplit.c from openwrt
+ generic files.
+
+---
+ .../target/linux/generic/files/drivers/mtd/mtdsplit/mtdsplit.c        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/recipes-kernel/linux/files/openwrt_files/target/linux/generic/files/drivers/mtd/mtdsplit/mtdsplit.c b/recipes-kernel/linux/files/openwrt_files/target/linux/generic/files/drivers/mtd/mtdsplit/mtdsplit.c
+index b2e51dc..35791d8 100644
+--- a/drivers/mtd/mtdsplit/mtdsplit.c
++++ b/drivers/mtd/mtdsplit/mtdsplit.c
+@@ -23,7 +23,7 @@
+ #include "mtdsplit.h"
+ 
+ #define UBI_EC_MAGIC			0x55424923	/* UBI# */
+-
++#define JFFS2_MAGIC                     0xE0011985      /* JFFS2# */
+ struct squashfs_super_block {
+ 	__le32 s_magic;
+ 	__le32 pad0[9];
+@@ -91,7 +91,7 @@ int mtd_check_rootfs_magic(struct mtd_info *mtd, size_t offset,
+ 		if (type)
+ 			*type = MTDSPLIT_PART_TYPE_SQUASHFS;
+ 		return 0;
+-	} else if (magic == 0x19852003) {
++} else if (le32_to_cpu(magic) == JFFS2_MAGIC) {
+ 		if (type)
+ 			*type = MTDSPLIT_PART_TYPE_JFFS2;
+ 		return 0;
+-- 
+1.9.1
+

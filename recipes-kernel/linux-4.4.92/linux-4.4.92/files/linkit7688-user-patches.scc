@@ -228,7 +228,9 @@ patch 271-uapi-libc-compat.h-do-not-rely-on-__GLIBC__.patch
 patch 272-uapi-if_ether.h-prevent-redefinition-of-struct-ethhd.patch
 patch 280-rfkill-stubs.patch
 patch 300-mips_expose_boot_raw.patch
-patch 301-mips_image_cmdline_hack.patch
+# This patch is not compatible with micro-iot bootargs fixes
+#patch 301-mips_image_cmdline_hack.patch
+patch 301-mips_image_cmdline_hack-micro-iot.patch
 patch 302-mips_no_branch_likely.patch
 patch 304-mips_disable_fpu.patch
 patch 305-mips_module_reloc.patch

@@ -69,8 +69,8 @@ SRC_URI += "file://defconfig \
             file://linkit7688-user-patches.scc \
            "
 SRC_URI += "file://openwrt_files/target/linux/generic/files"
-SRC_URI += "file://openwrt_files/target/linux/ramips/files-4.9"
 SRC_URI += "file://openwrt_files/target/linux/ramips/dts"
+SRC_URI += "file://openwrt_files/0001-Changed-JFFS2-magic-number-in-mtdsplit.c-from-openwrt-micro-iot.patch"
 
 LINUX_VERSION ?= "4.4"
 LINUX_VERSION_EXTENSION_append = "-custom"
@@ -98,13 +98,19 @@ FILESEXTRAPATHS_prepend:="${THISDIR}/openwrt_files:"
 DEPENDS+="image-patch-native xz-native u-boot-mkimage-native openwrt-lzma-native"
 
 do_patch_prepend() {
+    
+    # Copy OpenWRT specific files
     cp -r openwrt_files/target/linux/generic/files/* ${S}
-    cp -r openwrt_files/target/linux/ramips/files-4.9/* ${S}
     cp -r openwrt_files/target/linux/ramips/dts/* ${S}/arch/mips/boot/dts/ralink
+
+    # This will be applied with other regular patches automatically
+    cp -r openwrt_files/0001-Changed-JFFS2-magic-number-in-mtdsplit.c-from-openwrt-micro-iot.patch ${S}
+    
+    # Assure OpenWRT specific files will be in git tree. Otherwise no patching possible (OE speciality)
     DIR=`pwd`
     cd ${S}
     git add .
-    git commit -m "Openwrt specific files added to compile source tree."
+    git commit -m "OpenWRT specific files added to compile source tree."
     cd $DIR
 }
 

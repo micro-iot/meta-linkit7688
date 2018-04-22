@@ -101,6 +101,11 @@ do_patch_prepend() {
     cp -r openwrt_files/target/linux/generic/files/* ${S}
     cp -r openwrt_files/target/linux/ramips/files-4.9/* ${S}
     cp -r openwrt_files/target/linux/ramips/dts/* ${S}/arch/mips/boot/dts/ralink
+    DIR=`pwd`
+    cd ${S}
+    git add .
+    git commit -m "Openwrt specific files added to compile source tree."
+    cd $DIR
 }
 
 do_configure_prepend() {

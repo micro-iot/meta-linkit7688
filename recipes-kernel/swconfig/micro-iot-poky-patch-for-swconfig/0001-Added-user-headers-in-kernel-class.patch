@@ -1,0 +1,24 @@
+From 3a8d631a89f90210848d421392d91d331028641d Mon Sep 17 00:00:00 2001
+From: me <me@me.me>
+Date: Wed, 8 May 2019 22:51:21 +0200
+Subject: [PATCH] Added user headers in kernel class.
+
+---
+ meta/classes/kernel.bbclass | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
+index 756707a..c2d0565 100644
+--- a/meta/classes/kernel.bbclass
++++ b/meta/classes/kernel.bbclass
+@@ -296,6 +296,7 @@ kernel_do_compile() {
+ 		mkdir -p "${KERNEL_OUTPUT_DIR}"
+ 		gzip -9cn < ${B}/vmlinux > "${KERNEL_OUTPUT_DIR}/vmlinux.gz"
+ 	fi
++	oe_runmake CC="${KERNEL_CC} $cc_extra " LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS} INSTALL_HDR_PATH=./source/user_headers headers_install
+ }
+ 
+ do_compile_kernelmodules() {
+-- 
+1.9.1
+

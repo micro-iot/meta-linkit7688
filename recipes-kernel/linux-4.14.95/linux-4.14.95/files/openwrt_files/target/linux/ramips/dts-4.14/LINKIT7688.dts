@@ -49,52 +49,22 @@
 			linux,code = <KEY_WPS_BUTTON>;
 		};
 	};
-
-        sound {
-                compatible = "simple-audio-card";
-                status = "okay";
-                simple-audio-card,format = "i2s";
-                simple-audio-card,name = "Audio-I2S";
-                simple-audio-card,bitclock-slave = <&dailink0_slave>;
-                simple-audio-card,frame-slave = <&dailink0_slave>;
-                simple-audio-card,widgets =
-                        "Microphone", "Mic Jack",
-                        "Line", "Line In",
-                        "Line", "Line Out",
-                        "Speaker", "Speaker",
-                        "Headphone", "Headphone Jack";
-                simple-audio-card,routing =
-                        "Headphone Jack", "HP_L",
-                        "Headphone Jack", "HP_R",
-                        "Speaker", "SPK_LP",
-                        "Speaker", "SPK_LN",
-                        "LINPUT1", "Mic Jack",
-                        "LINPUT3", "Mic Jack",
-                        "RINPUT1", "Mic Jack",
-                        "RINPUT2", "Mic Jack";
-
-                simple-audio-card,mclk-fs = <256>;
-
-                simple-audio-card,cpu {
-                      sound-dai = <&i2s>;
-                };
-
-                dailink0_slave: simple-audio-card,codec {
-                        sound-dai = <&codec>;
-                };
-
-                wm8960_mclk: wm8960_mclk {
-                        compatible = "fixed-clock";
-                        #clock-cells = <0>;
-                };
-
-         };
 };
 
 &pinctrl {
 	state_default: pinctrl0 {
 		gpio {
 			ralink,group = "gpio";
+			ralink,function = "gpio";
+		};
+
+		refclk {
+			ralink,group = "refclk";
+			ralink,function = "gpio";
+		};
+
+		i2s {
+			ralink,group = "i2s";
 			ralink,function = "gpio";
 		};
 
@@ -112,15 +82,11 @@
 			ralink,group = "wdt";
 			ralink,function = "gpio";
 		};
+	};
+};
 
-           };
-
-           i2s_pins: i2s {
-                i2s {
-                        ralink,group = "i2s";
-                        ralink,function = "i2s";
-                };
-           };
+&wmac {
+	status = "okay";
 };
 
 &spi0 {
@@ -151,16 +117,12 @@
 		factory: partition@40000 {
 			label = "factory";
 			reg = <0x40000 0x10000>;
+			read-only;
 		};
 
 		partition@50000 {
 			label = "firmware";
-			reg = <0x50000 0x1000000>;
-		};
-
-		partition@1050000 {
-			label = "persistent";
-			reg = <0x1050000 0xfb0000>;
+			reg = <0x50000 0x1fb0000>;
 		};
 	};
 
@@ -173,33 +135,15 @@
 	};
 };
 
-
 &i2c {
-	status = "okay";
-        codec: wm8960@1a {
-                #sound-dai-cells = <0>;
-                compatible = "wlf,wm8960";
-                reg = <0x1a>;
-                clocks = <&wm8960_mclk>;
-                clock-names = "mclk";
-                clock-frequency = <12288000>;
-
-                wlf,shared-lrclk;
-        };
-};
-
-&uart0 {
-	clock-frequency = <400000000>;
 	status = "okay";
 };
 
 &uart1 {
-	clock-frequency = <40000000>;
 	status = "okay";
 };
 
 &uart2 {
-	clock-frequency = <40000000>;
 	status = "okay";
 };
 
@@ -217,20 +161,5 @@
 };
 
 &wmac {
-	status = "okay";
-};
-
-&esw {
-	mediatek,portmap = <0x3>;
-	mediatek,portdisable = <0x3c>;
-};
-
-
-&i2s {
-	#sound-dai-cells = <0>;
-	status = "okay";
-};
-
-&gdma {
 	status = "okay";
 };

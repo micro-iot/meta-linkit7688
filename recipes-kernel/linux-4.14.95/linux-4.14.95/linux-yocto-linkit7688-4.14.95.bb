@@ -21,6 +21,7 @@ SRC_URI += "file://v4.14.95/defconfig \
             file://v4.14.95/linkit7688-user-patches.scc \
             file://v4.14.95/0001-linkit7688-dts-makefile.patch \
             file://v4.14.95/lks7688_ubinize.cfg \
+            file://v4.14.95/lks7688_ubinize_ubifs.cfg \
            "
 
 SRC_URI += "file://openwrt_files/target/linux/generic/files"

@@ -10,5 +10,6 @@ inherit module
 S = "${WORKDIR}"
 
 FILES_${PN}${KERNEL_MODULE_PACKAGE_SUFFIX} += "/lib/firmware/*"
+FILES_${PN} += "/lib/modules"
 
 KERNEL_MODULE_AUTOLOAD += "kernel-module-gpio-button-hotplug"
